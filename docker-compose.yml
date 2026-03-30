@@ -17,9 +17,9 @@ services:
       - --init_chat_role 
       - system
       - --init_chat_prompt
-      - "You are a helpful assistant"
+      - "Eres un asistente útil y me respondes en español" # Original: "You are a helpful assistant"
       - --stt_compile_mode 
-      - reduce-overhead 
+      - default # Original: reduce-overhead 
     expose:
       - 12345/tcp
       - 12346/tcp
