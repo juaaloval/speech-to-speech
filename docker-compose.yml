@@ -5,21 +5,27 @@ services:
     build:
       context: .
       dockerfile: ${DOCKERFILE:-Dockerfile}
-    command: 
-      - python3 
-      - s2s_pipeline.py 
-      - --recv_host 
-      - 0.0.0.0 
-      - --send_host 
-      - 0.0.0.0 
-      - --lm_model_name 
-      - microsoft/Phi-3-mini-4k-instruct 
-      - --init_chat_role 
+    command:
+      - python3
+      - s2s_pipeline.py
+      - --recv_host
+      - 0.0.0.0
+      - --send_host
+      - 0.0.0.0
+      - --lm_model_name
+      - google/gemma-3-1b-it # LLM model (brain of the agent). Default: microsoft/Phi-3-mini-4k-instruct
+      - --init_chat_role
       - system
       - --init_chat_prompt
       - "Eres un asistente útil y me respondes en español" # Original: "You are a helpful assistant"
-      - --stt_compile_mode 
-      - default # Original: reduce-overhead 
+      - --stt_compile_mode
+      - default # Original: reduce-overhead
+      - --stt
+      - parakeet-tdt # STT model
+      - --tts
+      - kokoro # TTS model
+    environment:
+      - HF_TOKEN=${HF_TOKEN}
     expose:
       - 12345/tcp
       - 12346/tcp
@@ -34,5 +40,5 @@ services:
         reservations:
           devices:
             - driver: nvidia
-              device_ids: ['0']
-              capabilities: [gpu]
+              device_ids: [ '0' ]
+              capabilities: [ gpu ]
