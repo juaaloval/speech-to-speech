@@ -74,7 +74,7 @@ class MLXLanguageModelHandler(BaseHandler):
 
     def setup(
         self,
-        model_name="microsoft/Phi-3-mini-4k-instruct",
+        model_name="google/gemma-3-1b-it", # Original: "microsoft/Phi-3-mini-4k-instruct",
         device="mps",
         torch_dtype="float16",
         gen_kwargs={},
