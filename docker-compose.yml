@@ -23,7 +23,7 @@ services:
       - --stt
       - parakeet-tdt # STT model
       - --tts
-      - kokoro # TTS model
+      - melo # TTS model. Recommended: kokoro, melo, qwen is too big
     environment:
       - HF_TOKEN=${HF_TOKEN}
     expose:

@@ -11,5 +11,6 @@ RUN pip install --no-cache-dir uv
 
 COPY pyproject.toml ./
 RUN uv sync --no-dev
+RUN uv run python -m unidic download    # Dictionaries for melo (500MB, try to remove asian languages in the future)
 
 COPY . .
